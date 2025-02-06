@@ -21,8 +21,8 @@ export function MobileNav({ routes, onLogout }: MobileNavProps) {
   const pathname = usePathname()
 
   return (
-    <nav className="fixed bottom-0 left-0 z-40 w-full h-16 bg-background border-t md:hidden">
-      <div className="grid h-full max-w-lg grid-cols-5 mx-auto font-medium">
+    <nav className="fixed bottom-0 left-0 z-40 w-full h-16 bg-background border-t border-purple-100 shadow-lg md:hidden">
+      <div className="grid h-full max-w-lg grid-cols-5 mx-auto font-medium bg-gradient-to-r from-purple-50/50 to-white/50">
         {routes.slice(0, 4).map((route) => (
           <NavLink
             key={route.href}
@@ -33,9 +33,12 @@ export function MobileNav({ routes, onLogout }: MobileNavProps) {
         ))}
         <Sheet open={open} onOpenChange={setOpen}>
           <SheetTrigger asChild>
-            <Button variant="ghost" className="inline-flex flex-col items-center justify-center px-5 hover:bg-muted">
-              <Menu className="w-5 h-5 mb-1" />
-              <span className="text-xs">Menu</span>
+            <Button 
+              variant="ghost" 
+              className="inline-flex flex-col items-center justify-center px-5 hover:bg-purple-50/50 rounded-md"
+            >
+              <Menu className="w-5 h-5 mb-1 text-muted-foreground hover:text-primary" />
+              <span className="text-xs text-muted-foreground hover:text-primary">Menu</span>
             </Button>
           </SheetTrigger>
           <SheetContent side="right" className="w-[300px] sm:w-[400px]">
