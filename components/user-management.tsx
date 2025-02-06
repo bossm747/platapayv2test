@@ -16,6 +16,7 @@ import {
 
 export function UserManagement() {
   const [userType, setUserType] = useState("")
+  const [isLoading, setIsLoading] = useState(false)
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -52,6 +53,7 @@ export function UserManagement() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     try {
+      setIsLoading(true)
       // Validate required fields
       if (!formData.username || !formData.email) {
         toast({
@@ -177,7 +179,8 @@ export function UserManagement() {
   }
 
   return (
-    <div className="space-y-6 bg-[#f5f0f9] p-6 min-h-screen">
+    <PageContainer>
+      <div className="space-y-6">
       <h1 className="text-2xl font-bold tracking-tight text-[#482164]">User Management</h1>
 
       <Card className="border-[#5a2c7f]">
@@ -442,12 +445,24 @@ export function UserManagement() {
               </>
             )}
 
-            <Button type="submit" className="w-full bg-[#5a2c7f] hover:bg-[#482164] text-white">
-              Create User
+            <Button 
+              type="submit" 
+              className="w-full bg-[#5a2c7f] hover:bg-[#482164] text-white"
+              disabled={isLoading}
+            >
+              {isLoading ? (
+                <>
+                  <span className="animate-spin mr-2">⚪</span>
+                  Creating User...
+                </>
+              ) : (
+                "Create User"
+              )}
             </Button>
           </form>
         </CardContent>
       </Card>
-    </div>
+      </div>
+    </PageContainer>
   )
 }
