@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import * as React from "react"
 import { Button } from "@/components/ui/button"
 import { MessageCircle } from "lucide-react"
 import {
@@ -13,6 +13,7 @@ import { AIAssistant } from "@/components/ai-assistant"
 
 export function ChatModal() {
   const [isOpen, setIsOpen] = React.useState(false)
+  const [isLoading, setIsLoading] = React.useState(false)
 
   return (
     <>
