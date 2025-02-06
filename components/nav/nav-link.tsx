@@ -6,6 +6,7 @@ interface NavLinkProps {
   route: Route
   pathname: string
   className?: string
+  onClick?: () => void
 }
 
 export function NavLink({ route, pathname, className }: NavLinkProps) {
@@ -17,6 +18,7 @@ export function NavLink({ route, pathname, className }: NavLinkProps) {
         "transition-colors",
         pathname === route.href ? "text-primary" : "text-muted-foreground"
       )}
+      onClick={onClick}
     >
       <route.icon className="w-5 h-5 mb-1" />
       <span className="text-xs truncate">{route.label}</span>

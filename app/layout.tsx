@@ -5,6 +5,7 @@ import { AuthProvider } from "@/lib/auth-context"
 import { ResponsiveNav } from "@/components/responsive-nav"
 import type React from "react"
 import { ChatModal } from "@/components/chat-modal"
+import { useEffect, useState } from "react"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -22,8 +23,8 @@ export default function RootLayout({
     <html lang="en" className="h-full">
       <body className={`${inter.className} h-full`}>
         <AuthProvider>
-          {/* Conditionally render nav and chat based on pathname */}
-          {typeof window !== 'undefined' && !window.location.pathname.includes('/login') && !window.location.pathname.includes('/activate') ? (
+          {/* Client-side navigation check */}
+          <ClientNav>
             <>
               <div className="flex h-full">
                 <ResponsiveNav />
@@ -33,13 +34,7 @@ export default function RootLayout({
               </div>
               <ChatModal />
             </>
-          ) : (
-            <main className="min-h-screen w-full flex items-center justify-center bg-gradient-to-b from-purple-50 to-white px-4 py-8 sm:px-6 lg:px-8">
-              <div className="w-full max-w-md space-y-8">
-                {children}
-              </div>
-            </main>
-          )}
+          </ClientNav>
           <div id="modal-root" />
         </AuthProvider>
       </body>
