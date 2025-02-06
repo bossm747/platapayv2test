@@ -39,7 +39,10 @@ export function ChatModal() {
               <DialogTitle className="text-lg font-semibold text-purple-900">PlataPay Assistant</DialogTitle>
             </DialogHeader>
             <div className="flex-1 overflow-hidden">
-              <AIAssistant hideHeader />
+              <AIAssistant 
+                hideHeader 
+                onLoadingChange={setIsLoading}
+              />
             </div>
           </div>
         </DialogContent>

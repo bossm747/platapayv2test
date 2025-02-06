@@ -14,9 +14,10 @@ interface Message {
 
 interface AIAssistantProps {
   hideHeader?: boolean
+  onLoadingChange?: (loading: boolean) => void
 }
 
-export function AIAssistant({ hideHeader = false }: AIAssistantProps) {
+export function AIAssistant({ hideHeader = false, onLoadingChange }: AIAssistantProps) {
   const [messages, setMessages] = React.useState<Message[]>([])
   const [input, setInput] = React.useState("")
   const [isLoading, setIsLoading] = React.useState(false)
@@ -37,6 +38,7 @@ export function AIAssistant({ hideHeader = false }: AIAssistantProps) {
 
     try {
       setIsLoading(true)
+      onLoadingChange?.(true)
       const newMessages = [...messages, { role: "user", content: input }]
       setMessages(newMessages)
       setInput("")
@@ -65,6 +67,7 @@ export function AIAssistant({ hideHeader = false }: AIAssistantProps) {
       })
     } finally {
       setIsLoading(false)
+      onLoadingChange?.(false)
     }
   }
 
