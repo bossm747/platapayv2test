@@ -1,8 +1,21 @@
+"use client"
+
 import Link from "next/link"
+import { useAuth } from "@/lib/auth-context"
+import { useRouter } from "next/navigation"
+import { useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Shield, Wallet, Zap } from "lucide-react"
 
 export default function LandingPage() {
+  const { user } = useAuth()
+  const router = useRouter()
+
+  useEffect(() => {
+    if (user) {
+      router.replace('/dashboard')
+    }
+  }, [user, router])
   return (
     <div className="flex flex-col min-h-screen">
       {/* Navigation */}
