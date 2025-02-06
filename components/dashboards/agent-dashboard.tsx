@@ -1,6 +1,10 @@
+"use client"
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import type { User } from "@/lib/auth-context"
-import { Users, DollarSign, ArrowUpRight } from "lucide-react"
+import { Users, DollarSign, Wallet, ArrowUpRight } from "lucide-react"
+import { Overview } from "@/components/overview"
+import { RecentTransactions } from "@/components/recent-transactions"
 
 interface AgentDashboardProps {
   user: User
@@ -53,19 +57,25 @@ export function AgentDashboard({ user }: AgentDashboardProps) {
           </CardContent>
         </Card>
       </div>
-      {/* Add more agent-specific content here */}
-    </div>
-  )
-}
-
-"use client"
-
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Overview } from "@/components/overview"
-import { RecentTransactions } from "@/components/recent-transactions"
-import { Users, Wallet, ArrowUpRight, ArrowDownRight } from "lucide-react"
-
-export function AgentDashboard() {
+      </div>
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
+        <Card className="col-span-4">
+          <CardHeader>
+            <CardTitle>Transaction Overview</CardTitle>
+          </CardHeader>
+          <CardContent className="pl-2">
+            <Overview />
+          </CardContent>
+        </Card>
+        <Card className="col-span-3">
+          <CardHeader>
+            <CardTitle>Recent Transactions</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <RecentTransactions />
+          </CardContent>
+        </Card>
+      </div>
   return (
     <div className="space-y-6">
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
