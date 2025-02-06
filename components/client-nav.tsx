@@ -25,7 +25,7 @@ export function ClientNav({ children }: ClientNavProps) {
     )
   }
 
-  const isPublicPage = !mounted || !pathname || pathname === '/' || pathname === '/home' || pathname?.includes('/login') || pathname?.includes('/activate') || pathname?.includes('/register')
+  const isPublicPage = !mounted || !pathname || pathname === '/' || pathname === '/home' || pathname?.includes('/login') || pathname?.includes('/activate') || pathname?.includes('/register') || pathname?.includes('/about') || pathname?.includes('/features') || pathname?.includes('/pricing')
 
   if (isPublicPage) {
     return (

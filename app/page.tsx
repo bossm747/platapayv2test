@@ -8,27 +8,28 @@ import { Button } from "@/components/ui/button"
 import { ArrowRight, Shield, Wallet, Zap } from "lucide-react"
 
 export default function LandingPage() {
-  const { user } = useAuth()
-  const router = useRouter()
-
-  useEffect(() => {
-    if (user) {
-      router.replace('/dashboard')
-    }
-  }, [user, router])
   return (
     <div className="flex flex-col min-h-screen">
       {/* Navigation */}
-      <nav className="border-b bg-white/50 backdrop-blur-sm">
+      <nav className="border-b bg-gradient-to-r from-purple-900 to-purple-700 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16 items-center">
-            <h1 className="text-2xl font-bold text-purple-900">PlataPay</h1>
+            <h1 className="text-2xl font-bold text-white">PlataPay</h1>
             <div className="flex gap-4">
+              <Link href="/about">
+                <Button variant="ghost" className="text-white hover:bg-white/20">About</Button>
+              </Link>
+              <Link href="/features">
+                <Button variant="ghost" className="text-white hover:bg-white/20">Features</Button>
+              </Link>
+              <Link href="/pricing">
+                <Button variant="ghost" className="text-white hover:bg-white/20">Pricing</Button>
+              </Link>
               <Link href="/login">
-                <Button variant="ghost">Login</Button>
+                <Button variant="ghost" className="text-white hover:bg-white/20">Login</Button>
               </Link>
               <Link href="/register">
-                <Button className="bg-purple-900 text-white hover:bg-purple-800">Get Started</Button>
+                <Button className="bg-white text-purple-900 hover:bg-white/90">Get Started</Button>
               </Link>
             </div>
           </div>
