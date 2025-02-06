@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server"
 import { headers } from "next/headers"
+import { cookies } from "next/headers"
 
 const BASE_URL = "https://platapay-api-uat.azurewebsites.net/api"
 
@@ -8,7 +9,6 @@ export async function POST(request: Request) {
     const cookieStore = cookies()
     const tokenCookie = cookieStore.get("auth_token")
     
-    // Then check Authorization header as fallback
     const headersList = headers()
     const authHeader = headersList.get("Authorization")
     
@@ -18,43 +18,17 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Unauthorized - No token provided" }, { status: 401 })
     }
 
-    console.log("Creating user with token:", token.substring(0, 20) + "...")
-
     const body = await request.json()
-    const { userType, userData } = body
-
-    // Validate required fields based on user type
-    if (!userData.username || !userData.email || !userData.user_detail) {
-      return NextResponse.json({ error: "Missing required fields" }, { status: 400 })
-    }
-
-    let endpoint = ""
-    switch (userType) {
-      case "admin":
-        endpoint = "/users/administrators/create"
-        break
-      case "agent":
-        if (!userData.store_detail || !userData.store_setting) {
-          return NextResponse.json({ error: "Missing store details for agent" }, { status: 400 })
-        }
-        endpoint = "/users/agents/create"
-        break
-      case "cashier":
-        endpoint = "/users/cashiers/create"
-        break
-      default:
-        return NextResponse.json({ error: "Invalid user type" }, { status: 400 })
-    }
 
     const response = await fetch(
-      `${BASE_URL}${endpoint}`,
+      `${BASE_URL}/notifications/email`,
       {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(userData),
+        body: JSON.stringify(body),
         cache: "no-store",
       }
     )
@@ -63,7 +37,7 @@ export async function POST(request: Request) {
       const errorData = await response.text()
       console.error("API Error:", response.status, errorData)
       return NextResponse.json(
-        { error: `Failed to create user: ${response.status} ${response.statusText}` },
+        { error: `Failed to send email: ${response.status} ${response.statusText}` },
         { status: response.status }
       )
     }
