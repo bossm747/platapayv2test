@@ -2,7 +2,7 @@ import { NextResponse } from "next/server"
 import { headers } from "next/headers"
 import { cookies } from "next/headers"
 
-const BASE_URL = "https://platapay-api-uat.azurewebsites.net/api"
+const BASE_URL = "https://platapay-api-uat.azurewebsites.net/api/v1"
 
 export async function GET(request: Request) {
   try {
@@ -35,6 +35,14 @@ export async function GET(request: Request) {
     if (!response.ok) {
       const errorData = await response.text()
       console.error("API Error:", response.status, errorData)
+      
+      if (response.status === 404) {
+        return NextResponse.json({ 
+          error: "Transactions endpoint not found. Please check API configuration.",
+          details: errorData
+        }, { status: 404 })
+      }
+      
       return NextResponse.json(
         { error: `Failed to fetch transactions: ${response.status} ${response.statusText}` },
         { status: response.status }
