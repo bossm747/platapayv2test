@@ -2,10 +2,8 @@ import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
 import { AuthProvider } from "@/lib/auth-context"
-import { ResponsiveNav } from "@/components/responsive-nav"
 import type React from "react"
-import { ChatModal } from "@/components/chat-modal"
-import { useEffect, useState } from "react"
+import { ClientNav } from "@/components/client-nav"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -23,18 +21,7 @@ export default function RootLayout({
     <html lang="en" className="h-full">
       <body className={`${inter.className} h-full`}>
         <AuthProvider>
-          {/* Client-side navigation check */}
-          <ClientNav>
-            <>
-              <div className="flex h-full">
-                <ResponsiveNav />
-                <main className="flex-1 overflow-y-auto p-4 md:p-6 md:ml-64 pb-20 md:pb-6">
-                  {children}
-                </main>
-              </div>
-              <ChatModal />
-            </>
-          </ClientNav>
+          <ClientNav>{children}</ClientNav>
           <div id="modal-root" />
         </AuthProvider>
       </body>

@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react"
 import { usePathname } from "next/navigation"
+import { ResponsiveNav } from "@/components/responsive-nav"
+import { ChatModal } from "@/components/chat-modal"
 
 interface ClientNavProps {
   children: React.ReactNode
