@@ -25,14 +25,12 @@ export function ClientNav({ children }: ClientNavProps) {
     )
   }
 
-  const isAuthPage = pathname?.includes('/login') || pathname?.includes('/activate')
+  const isPublicPage = !mounted || !pathname || pathname === '/' || pathname?.includes('/login') || pathname?.includes('/activate')
 
-  if (isAuthPage) {
+  if (isPublicPage) {
     return (
-      <main className="min-h-screen w-full flex items-center justify-center bg-gradient-to-b from-purple-50 to-white px-4 py-8 sm:px-6 lg:px-8">
-        <div className="w-full max-w-md space-y-8">
-          {children}
-        </div>
+      <main className="min-h-screen w-full bg-gradient-to-b from-purple-50 to-white">
+        {children}
       </main>
     )
   }
