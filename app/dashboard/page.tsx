@@ -42,3 +42,40 @@ export default function DashboardPage() {
   return <DashboardComponent user={user} />
 }
 
+"use client"
+
+import { useEffect } from "react"
+import { useRouter } from "next/navigation"
+import { useAuth } from "@/lib/auth-context"
+
+export default function DashboardPage() {
+  const { user, isLoading } = useAuth()
+  const router = useRouter()
+
+  useEffect(() => {
+    if (!isLoading && !user) {
+      router.replace("/login")
+    }
+  }, [user, isLoading, router])
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center h-full">
+        <div className="animate-spin text-purple-900">⚪</div>
+      </div>
+    )
+  }
+
+  if (!user) {
+    return null
+  }
+
+  return (
+    <div className="space-y-6">
+      <h1 className="text-2xl font-bold tracking-tight text-purple-900">
+        {user.role} Dashboard
+      </h1>
+      {/* Dashboard content */}
+    </div>
+  )
+}

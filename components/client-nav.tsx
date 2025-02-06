@@ -25,7 +25,7 @@ export function ClientNav({ children }: ClientNavProps) {
     )
   }
 
-  const isPublicPage = !mounted || !pathname || pathname === '/' || pathname?.includes('/login') || pathname?.includes('/activate')
+  const isPublicPage = !mounted || !pathname || pathname === '/' || pathname?.includes('/login') || pathname?.includes('/activate') || pathname?.includes('/register')
 
   if (isPublicPage) {
     return (
