@@ -49,10 +49,10 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Unauthorized - No token provided" }, { status: 401 })
     }
 
-    const body = await request.json()
+    const { recipient, amount } = await request.json()
     
     // Validate request body against the API schema
-    if (!body.destination_user_id || !body.amount || body.amount <= 0) {
+    if (!recipient || !amount || parseFloat(amount) <= 0) {
       return NextResponse.json(
         { error: "Invalid request body - missing required fields or invalid amount" },
         { status: 400 }
