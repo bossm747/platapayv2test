@@ -13,7 +13,7 @@ interface AdminDashboardProps {
 
 export function AdminDashboard({ user }: AdminDashboardProps) {
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 min-h-screen pb-8">
       <div className="bg-gradient-to-r from-purple-900/10 to-purple-800/10 rounded-lg p-6 border border-purple-200/20">
         <h1 className="text-3xl font-bold text-purple-900">Welcome, {user.username}</h1>
         <p className="text-purple-700">Administrator Dashboard</p>

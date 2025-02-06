@@ -34,8 +34,10 @@ export default function RootLayout({
               <ChatModal />
             </>
           ) : (
-            <main className="flex h-full items-center justify-center bg-gradient-to-b from-purple-50 to-white">
-              {children}
+            <main className="min-h-screen w-full flex items-center justify-center bg-gradient-to-b from-purple-50 to-white px-4 py-8 sm:px-6 lg:px-8">
+              <div className="w-full max-w-md space-y-8">
+                {children}
+              </div>
             </main>
           )}
           <div id="modal-root" />

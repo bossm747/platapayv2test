@@ -72,8 +72,8 @@ export function AIAssistant() {
           PlataPay Assistant
         </CardTitle>
       </CardHeader>
-      <CardContent className="p-4">
-        <div className="h-[400px] overflow-y-auto mb-4 space-y-4">
+      <CardContent className="p-2 sm:p-4">
+        <div className="h-[calc(90vh-12rem)] sm:h-[400px] overflow-y-auto mb-4 space-y-4 px-2">
           {messages.map((message, index) => (
             <div
               key={index}
