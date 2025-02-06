@@ -24,9 +24,12 @@ export default function RootLayout({
         <AuthProvider>
           <div className="flex h-full">
             <ResponsiveNav />
-            <main className="flex-1 overflow-y-auto p-4 md:p-6 md:ml-64 pb-20 md:pb-6">{children}</main>
+            <main className="flex-1 overflow-y-auto p-4 md:p-6 md:ml-64 pb-20 md:pb-6">
+              {children}
+            </main>
           </div>
           <ChatModal />
+          <div id="modal-root" />
         </AuthProvider>
       </body>
     </html>

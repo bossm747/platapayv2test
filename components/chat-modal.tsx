@@ -17,14 +17,14 @@ export function ChatModal() {
   return (
     <>
       <Button
-        className="fixed bottom-4 right-4 h-12 w-12 rounded-full bg-[#5a2c7f] hover:bg-[#482164]"
+        className="fixed bottom-4 right-4 h-12 w-12 rounded-full bg-[#5a2c7f] hover:bg-[#482164] shadow-lg z-50"
         onClick={() => setIsOpen(true)}
       >
-        <MessageCircle className="h-6 w-6" />
+        <MessageCircle className="h-6 w-6 text-white" />
       </Button>
 
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent className="sm:max-w-[500px]">
+        <DialogContent className="sm:max-w-[500px] h-[600px] overflow-hidden">
           <DialogHeader>
             <DialogTitle>PlataPay Assistant</DialogTitle>
           </DialogHeader>
