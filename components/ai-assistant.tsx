@@ -14,6 +14,15 @@ interface Message {
 
 export function AIAssistant() {
   const [messages, setMessages] = useState<Message[]>([])
+  const messagesEndRef = React.useRef<HTMLDivElement>(null)
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
+  }
+
+  React.useEffect(() => {
+    scrollToBottom()
+  }, [messages])
   const [input, setInput] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const { toast } = useToast()
@@ -71,12 +80,13 @@ export function AIAssistant() {
               className={`p-3 rounded-lg ${
                 message.role === "user"
                   ? "bg-[#dbcbe5] ml-auto max-w-[80%]"
-                  : "bg-gray-100 mr-auto max-w-[80%]"
+                  : "bg-white mr-auto max-w-[80%] shadow-sm"
               }`}
             >
               {message.content}
             </div>
           ))}
+          <div ref={messagesEndRef} />
         </div>
         <form onSubmit={handleSubmit} className="flex gap-2">
           <Input
@@ -90,7 +100,11 @@ export function AIAssistant() {
             className="bg-[#5a2c7f] hover:bg-[#482164]"
             disabled={isLoading}
           >
-            <Send className="h-4 w-4" />
+            {isLoading ? (
+              <span className="animate-spin">⚪</span>
+            ) : (
+              <Send className="h-4 w-4" />
+            )}
           </Button>
         </form>
       </CardContent>

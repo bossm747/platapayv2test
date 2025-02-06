@@ -24,7 +24,7 @@ export function ChatModal() {
       </Button>
 
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent className="sm:max-w-[500px] h-[600px] overflow-hidden">
+        <DialogContent className="sm:max-w-[500px] h-[600px] overflow-hidden bg-[#f5f0f9]">
           <DialogHeader>
             <DialogTitle>PlataPay Assistant</DialogTitle>
           </DialogHeader>
