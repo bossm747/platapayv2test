@@ -35,7 +35,7 @@ export function MobileNav({ routes, onLogout }: MobileNavProps) {
                 <Menu className="w-6 h-6 text-muted-foreground hover:text-primary" />
               </Button>
             </SheetTrigger>
-          <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+          <SheetContent side="right" className="w-[300px] sm:w-[400px] bg-white/80 backdrop-blur-sm border-l border-purple-100">
             <ScrollArea className="h-[calc(100vh-8rem)] pb-10">
               <div className="flex flex-col gap-4 py-4">
                 {routes.map((route) => (

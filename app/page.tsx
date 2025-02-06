@@ -1,9 +1,5 @@
 import { redirect } from "next/navigation"
 
-export default function Home() {
-  redirect("/login")
-}
-
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Shield, Wallet, Zap } from "lucide-react"
