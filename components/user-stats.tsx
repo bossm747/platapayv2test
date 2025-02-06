@@ -1,58 +1,72 @@
 "use client"
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Users, UserPlus, UserCheck, UserX } from "lucide-react"
+import { Users, UserCheck, UserPlus, UserX, Building2, ArrowLeftRight } from "lucide-react"
+import { StatsCard } from "./stats-card"
 
 interface UserStatsProps {
   totalUsers: number
   activeUsers: number
   newUsers: number
   inactiveUsers: number
+  totalAgents: number
+  totalTransactions: number
+  growthStats?: {
+    users: number
+    active: number
+    new: number
+    inactive: number
+    agents: number
+    transactions: number
+  }
 }
 
-export function UserStats({ totalUsers, activeUsers, newUsers, inactiveUsers }: UserStatsProps) {
+export function UserStats({
+  totalUsers,
+  activeUsers,
+  newUsers,
+  inactiveUsers,
+  totalAgents,
+  totalTransactions,
+  growthStats
+}: UserStatsProps) {
   return (
-    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-      <Card>
-        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle className="text-sm font-medium">Total Users</CardTitle>
-          <Users className="h-4 w-4 text-muted-foreground" />
-        </CardHeader>
-        <CardContent>
-          <div className="text-2xl font-bold">{totalUsers}</div>
-          <p className="text-xs text-muted-foreground">All registered users</p>
-        </CardContent>
-      </Card>
-      <Card>
-        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle className="text-sm font-medium">Active Users</CardTitle>
-          <UserCheck className="h-4 w-4 text-green-500" />
-        </CardHeader>
-        <CardContent>
-          <div className="text-2xl font-bold">{activeUsers}</div>
-          <p className="text-xs text-muted-foreground">Currently active users</p>
-        </CardContent>
-      </Card>
-      <Card>
-        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle className="text-sm font-medium">New Users</CardTitle>
-          <UserPlus className="h-4 w-4 text-blue-500" />
-        </CardHeader>
-        <CardContent>
-          <div className="text-2xl font-bold">{newUsers}</div>
-          <p className="text-xs text-muted-foreground">Added this month</p>
-        </CardContent>
-      </Card>
-      <Card>
-        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle className="text-sm font-medium">Inactive Users</CardTitle>
-          <UserX className="h-4 w-4 text-red-500" />
-        </CardHeader>
-        <CardContent>
-          <div className="text-2xl font-bold">{inactiveUsers}</div>
-          <p className="text-xs text-muted-foreground">Pending activation</p>
-        </CardContent>
-      </Card>
+    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <StatsCard
+        title="Total Users"
+        value={totalUsers}
+        icon={Users}
+        growth={growthStats?.users}
+      />
+      <StatsCard
+        title="Active Users"
+        value={activeUsers}
+        icon={UserCheck}
+        growth={growthStats?.active}
+      />
+      <StatsCard
+        title="New Users"
+        value={newUsers}
+        icon={UserPlus}
+        growth={growthStats?.new}
+      />
+      <StatsCard
+        title="Inactive Users"
+        value={inactiveUsers}
+        icon={UserX}
+        growth={growthStats?.inactive}
+      />
+      <StatsCard
+        title="Total Agents"
+        value={totalAgents}
+        icon={Building2}
+        growth={growthStats?.agents}
+      />
+      <StatsCard
+        title="Total Transactions"
+        value={totalTransactions}
+        icon={ArrowLeftRight}
+        growth={growthStats?.transactions}
+      />
     </div>
   )
 }
