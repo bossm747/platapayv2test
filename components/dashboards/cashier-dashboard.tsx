@@ -1,6 +1,10 @@
+"use client"
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import type { User } from "@/lib/auth-context"
 import { ArrowUpRight, ArrowDownRight, DollarSign, CreditCard } from "lucide-react"
+import { Overview } from "@/components/overview"
+import { RecentTransactions } from "@/components/recent-transactions"
 
 interface CashierDashboardProps {
   user: User
@@ -53,22 +57,28 @@ export function CashierDashboard({ user }: CashierDashboardProps) {
           </CardContent>
         </Card>
       </div>
-      {/* Add more cashier-specific content here */}
+
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
+        <Card className="col-span-4">
+          <CardHeader>
+            <CardTitle>Transaction Overview</CardTitle>
+          </CardHeader>
+          <CardContent className="pl-2">
+            <Overview />
+          </CardContent>
+        </Card>
+        <Card className="col-span-3">
+          <CardHeader>
+            <CardTitle>Recent Transactions</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <RecentTransactions />
+          </CardContent>
+        </Card>
+      </div>
     </div>
   )
 }
-
-"use client"
-
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Overview } from "@/components/overview"
-import { RecentTransactions } from "@/components/recent-transactions"
-import { Users, Wallet, ArrowUpRight, ArrowDownRight } from "lucide-react"
-
-export function CashierDashboard() {
-  return (
-    <div className="space-y-6">
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Today's Transactions</CardTitle>
