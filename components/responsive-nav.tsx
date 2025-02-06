@@ -123,3 +123,134 @@ export function ResponsiveNav() {
   )
 }
 
+"use client"
+
+import * as React from "react"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
+import { cn } from "@/lib/utils"
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet"
+import { Button } from "@/components/ui/button"
+import { Menu, X, Home, Users, Wallet, FileText, Settings, LogOut } from "lucide-react"
+
+const routes = [
+  {
+    label: 'Dashboard',
+    icon: Home,
+    href: '/dashboard',
+    color: 'text-sky-500',
+  },
+  {
+    label: 'Users',
+    icon: Users,
+    href: '/users',
+    color: 'text-violet-500',
+  },
+  {
+    label: 'Wallet',
+    icon: Wallet,
+    href: '/wallet',
+    color: 'text-pink-700',
+  },
+  {
+    label: 'Transactions',
+    icon: FileText,
+    href: '/transactions',
+    color: 'text-orange-700',
+  },
+  {
+    label: 'Settings',
+    icon: Settings,
+    href: '/settings',
+    color: 'text-gray-500',
+  }
+]
+
+export function ResponsiveNav() {
+  const pathname = usePathname()
+  const [open, setOpen] = React.useState(false)
+
+  return (
+    <>
+      {/* Mobile Navigation */}
+      <Sheet open={open} onOpenChange={setOpen}>
+        <SheetTrigger asChild className="md:hidden fixed top-4 left-4 z-40">
+          <Button variant="outline" size="icon">
+            <Menu className="h-6 w-6" />
+          </Button>
+        </SheetTrigger>
+        <SheetContent side="left" className="w-72 bg-white p-0">
+          <SheetHeader className="p-4 border-b">
+            <SheetTitle className="text-2xl font-bold text-purple-900">PlataPay</SheetTitle>
+          </SheetHeader>
+          <nav className="flex flex-col gap-1 p-4">
+            {routes.map((route) => (
+              <Link
+                key={route.href}
+                href={route.href}
+                onClick={() => setOpen(false)}
+                className={cn(
+                  "flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900",
+                  pathname === route.href ? "bg-purple-50 text-purple-900" : ""
+                )}
+              >
+                <route.icon className={cn("h-5 w-5", route.color)} />
+                {route.label}
+              </Link>
+            ))}
+            <Button 
+              variant="ghost" 
+              className="w-full justify-start gap-3 mt-auto"
+              onClick={() => {
+                localStorage.removeItem("auth_token")
+                window.location.href = "/login"
+              }}
+            >
+              <LogOut className="h-5 w-5" />
+              Logout
+            </Button>
+          </nav>
+        </SheetContent>
+      </Sheet>
+
+      {/* Desktop Navigation */}
+      <nav className="hidden md:flex flex-col gap-1 fixed w-64 h-full bg-white border-r p-4">
+        <div className="pb-4 border-b">
+          <h1 className="text-2xl font-bold text-purple-900">PlataPay</h1>
+        </div>
+        <div className="flex flex-col gap-1 py-4">
+          {routes.map((route) => (
+            <Link
+              key={route.href}
+              href={route.href}
+              className={cn(
+                "flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900",
+                pathname === route.href ? "bg-purple-50 text-purple-900" : ""
+              )}
+            >
+              <route.icon className={cn("h-5 w-5", route.color)} />
+              {route.label}
+            </Link>
+          ))}
+        </div>
+        <Button 
+          variant="ghost" 
+          className="w-full justify-start gap-3 mt-auto"
+          onClick={() => {
+            localStorage.removeItem("auth_token")
+            window.location.href = "/login"
+          }}
+        >
+          <LogOut className="h-5 w-5" />
+          Logout
+        </Button>
+      </nav>
+    </>
+  )
+}
