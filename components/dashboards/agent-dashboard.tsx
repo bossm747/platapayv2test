@@ -13,9 +13,9 @@ interface AgentDashboardProps {
 export function AgentDashboard({ user }: AgentDashboardProps) {
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold">Welcome, {user.username}</h1>
-        <p className="text-muted-foreground">Agent Dashboard</p>
+      <div className="bg-gradient-to-r from-purple-900/10 to-purple-800/10 rounded-lg p-6 border border-purple-200/20">
+        <h1 className="text-3xl font-bold text-purple-900">Welcome, {user.username}</h1>
+        <p className="text-purple-700">Agent Dashboard</p>
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">

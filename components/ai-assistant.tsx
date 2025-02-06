@@ -65,10 +65,10 @@ export function AIAssistant() {
   }
 
   return (
-    <Card className="w-full max-w-2xl mx-auto">
-      <CardHeader className="bg-[#5a2c7f] text-white rounded-t-lg">
-        <CardTitle className="flex items-center gap-2">
-          <Bot size={24} />
+    <Card className="w-full max-w-2xl mx-auto shadow-lg border border-purple-100">
+      <CardHeader className="bg-gradient-to-r from-purple-900 to-purple-700 text-white rounded-t-lg">
+        <CardTitle className="flex items-center gap-2 text-lg">
+          <Bot size={24} className="animate-pulse" />
           PlataPay Assistant
         </CardTitle>
       </CardHeader>

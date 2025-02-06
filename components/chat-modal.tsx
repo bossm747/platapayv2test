@@ -27,7 +27,7 @@ export function ChatModal() {
 
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogContent 
-          className="sm:max-w-[500px] h-[600px] overflow-hidden bg-[#f5f0f9]"
+          className="sm:max-w-[500px] h-[600px] overflow-hidden bg-gradient-to-b from-purple-50 to-white border border-purple-100 shadow-xl"
           onInteractOutside={(e) => {
             if (isLoading) {
               e.preventDefault()
