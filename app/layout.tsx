@@ -4,6 +4,7 @@ import "./globals.css"
 import { AuthProvider } from "@/lib/auth-context"
 import { ResponsiveNav } from "@/components/responsive-nav"
 import type React from "react"
+import { ChatModal } from "@/components/chat-modal"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -25,6 +26,7 @@ export default function RootLayout({
             <ResponsiveNav />
             <main className="flex-1 overflow-y-auto p-4 md:p-6 md:ml-64 pb-20 md:pb-6">{children}</main>
           </div>
+          <ChatModal />
         </AuthProvider>
       </body>
     </html>
