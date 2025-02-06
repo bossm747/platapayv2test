@@ -19,8 +19,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="h-full">
-      <body className={`${inter.className} h-full`}>
+    <html lang="en" className="h-full bg-indigo-50">
+      <body className={`${inter.className} h-full bg-indigo-50`}>
         <AuthProvider>
           <div className="h-full">
             <ErrorBoundary>

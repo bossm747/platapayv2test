@@ -22,7 +22,7 @@ export function MobileNav({ routes, onLogout }: MobileNavProps) {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 z-40 w-full h-16 bg-background border-b border-purple-100 shadow-sm md:hidden">
+      <nav className="fixed top-0 left-0 z-40 w-full h-16 bg-white/80 backdrop-blur-sm border-b border-purple-100 shadow-sm md:hidden">
         <div className="flex items-center justify-between h-full px-4">
           <h1 className="text-xl font-bold">PlataPay</h1>
           <Sheet open={open} onOpenChange={setOpen}>
@@ -64,8 +64,8 @@ export function MobileNav({ routes, onLogout }: MobileNavProps) {
         </Sheet>
         </div>
       </nav>
-      <nav className="fixed bottom-0 left-0 z-40 w-full h-16 bg-background border-t border-purple-100 shadow-lg md:hidden">
-        <div className="grid h-full max-w-lg grid-cols-4 mx-auto font-medium bg-gradient-to-r from-purple-50/50 to-white/50">
+      <nav className="fixed bottom-0 left-0 z-40 w-full h-16 bg-white/80 backdrop-blur-sm border-t border-purple-100 shadow-lg md:hidden">
+        <div className="grid h-full max-w-lg grid-cols-4 mx-auto font-medium bg-gradient-to-r from-purple-100/50 to-white/50">
           {routes.slice(0, 4).map((route) => (
             <NavLink
               key={route.href}

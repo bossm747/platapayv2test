@@ -72,7 +72,7 @@ export function AIAssistant({ hideHeader = false, onLoadingChange }: AIAssistant
   }
 
   return (
-    <Card className="w-full max-w-2xl mx-auto shadow-lg border border-purple-100">
+    <Card className="w-full max-w-2xl mx-auto shadow-lg border border-purple-100 bg-white/80 backdrop-blur-sm">
       {!hideHeader && (
         <CardHeader className="bg-gradient-to-r from-purple-900 to-purple-700 text-white rounded-t-lg">
           <CardTitle className="flex items-center gap-2 text-lg">
