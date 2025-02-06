@@ -16,36 +16,31 @@ export async function GET(request: Request) {
     }
 
     const { searchParams } = new URL(request.url)
-    const pageNumber = parseInt(searchParams.get("pageNumber") || "1")
-    const pageSize = parseInt(searchParams.get("pageSize") || "10")
+    const pageNumber = searchParams.get("pageNumber") || "1"
+    const pageSize = searchParams.get("pageSize") || "10"
 
-    // Mock transaction data
-    const mockTransactions = Array.from({ length: 10 }, (_, i) => ({
-      id: i + 1,
-      transaction_type: i % 2 === 0 ? "DEPOSIT" : "WITHDRAWAL",
-      amount: Math.random() * 1000,
-      status: "COMPLETED",
-      created_date: new Date(Date.now() - i * 86400000).toISOString(),
-      description: `Transaction #${i + 1}`,
-      reference_number: `TXN${String(i + 1).padStart(6, '0')}`,
-      sender: {
-        id: 1,
-        name: "John Doe"
-      },
-      recipient: {
-        id: 2,
-        name: "Jane Smith"
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/transactions?pageNumber=${pageNumber}&pageSize=${pageSize}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        cache: "no-store",
       }
-    }))
+    )
 
-    const response = {
-      total_records: 100,
-      page_number: pageNumber,
-      page_size: pageSize,
-      data: mockTransactions
+    if (!response.ok) {
+      const errorData = await response.text()
+      console.error("API Error:", response.status, errorData)
+      return NextResponse.json(
+        { error: `Failed to fetch transactions: ${response.status} ${response.statusText}` },
+        { status: response.status }
+      )
     }
 
-    return NextResponse.json(response)
+    const data = await response.json()
+    return NextResponse.json(data)
     
   } catch (error) {
     console.error("Server Error:", error)
