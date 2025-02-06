@@ -22,9 +22,9 @@ export function MobileNav({ routes, onLogout }: MobileNavProps) {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 z-40 w-full h-16 bg-white/80 backdrop-blur-sm border-b border-purple-100 shadow-sm md:hidden">
+      <nav className="fixed top-0 left-0 z-40 w-full h-16 bg-gradient-to-r from-purple-900 to-purple-700 border-b border-purple-100 shadow-sm md:hidden">
         <div className="flex items-center justify-between h-full px-4">
-          <h1 className="text-xl font-bold">PlataPay</h1>
+          <h1 className="text-xl font-bold text-white">PlataPay</h1>
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>
               <Button 

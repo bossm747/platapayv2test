@@ -18,7 +18,7 @@ export function ChatModal() {
   return (
     <>
       <Button
-        className="fixed bottom-24 right-8 md:bottom-8 h-12 w-12 rounded-full bg-[#5a2c7f] hover:bg-[#482164] shadow-lg z-50"
+        className="fixed bottom-24 right-8 md:bottom-8 h-12 w-12 rounded-full bg-[#5a2c7f] hover:bg-[#482164] shadow-lg z-50 hover:scale-110 transition-transform duration-200 animate-bounce"
         onClick={() => setIsOpen(true)}
         aria-label="Open chat assistant"
       >

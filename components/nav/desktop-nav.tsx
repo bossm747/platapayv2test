@@ -17,8 +17,8 @@ export function DesktopNav({ routes, onLogout }: DesktopNavProps) {
 
   return (
     <aside className="fixed left-0 top-0 z-40 hidden h-screen w-64 border-r bg-white/80 backdrop-blur-sm transition-transform md:translate-x-0 md:flex md:flex-col">
-      <div className="flex h-16 items-center justify-center border-b px-4">
-        <h1 className="text-2xl font-bold">PlataPay</h1>
+      <div className="flex h-16 items-center justify-center border-b px-4 bg-gradient-to-r from-purple-900 to-purple-700">
+        <h1 className="text-2xl font-bold text-white">PlataPay</h1>
       </div>
       <ScrollArea className="flex-1">
         <nav className="flex flex-col gap-2 p-4">

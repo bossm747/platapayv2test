@@ -86,10 +86,10 @@ export function AIAssistant({ hideHeader = false, onLoadingChange }: AIAssistant
           {messages.map((message, index) => (
             <div
               key={index}
-              className={`p-3 rounded-lg ${
+              className={`p-3 rounded-lg animate-fadeIn ${
                 message.role === "user"
-                  ? "bg-[#dbcbe5] ml-auto max-w-[80%]"
-                  : "bg-white mr-auto max-w-[80%] shadow-sm"
+                  ? "bg-[#dbcbe5] ml-auto max-w-[80%] shadow-md"
+                  : "bg-white mr-auto max-w-[80%] shadow-md border border-purple-100/50"
               }`}
             >
               {message.content}

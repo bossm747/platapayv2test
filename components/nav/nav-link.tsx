@@ -17,8 +17,8 @@ export function NavLink({ route, pathname, className, onClick }: NavLinkProps) {
         className,
         "transition-colors",
         pathname === route.href 
-          ? "text-primary bg-purple-100/50 rounded-md" 
-          : "text-muted-foreground hover:text-primary hover:bg-purple-50/50 rounded-md"
+          ? "text-primary bg-purple-100/50 rounded-md shadow-sm transition-all duration-200 scale-[0.98]" 
+          : "text-muted-foreground hover:text-primary hover:bg-purple-50/50 rounded-md hover:scale-[0.98] transition-all duration-200"
       )}
       onClick={onClick}
     >
