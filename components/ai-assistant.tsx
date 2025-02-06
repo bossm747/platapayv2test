@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useRef, useEffect } from "react"
+import * as React from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -13,18 +13,18 @@ interface Message {
 }
 
 export function AIAssistant() {
-  const [messages, setMessages] = useState<Message[]>([])
+  const [messages, setMessages] = React.useState<Message[]>([])
+  const [input, setInput] = React.useState("")
+  const [isLoading, setIsLoading] = React.useState(false)
   const messagesEndRef = React.useRef<HTMLDivElement>(null)
 
-  const scrollToBottom = () => {
+  const scrollToBottom = React.useCallback(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
-  }
+  }, [])
 
   React.useEffect(() => {
     scrollToBottom()
-  }, [messages])
-  const [input, setInput] = useState("")
-  const [isLoading, setIsLoading] = useState(false)
+  }, [messages, scrollToBottom])
   const { toast } = useToast()
 
   const handleSubmit = async (e: React.FormEvent) => {
