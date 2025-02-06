@@ -17,7 +17,13 @@ export function ClientNav({ children }: ClientNavProps) {
     setMounted(true)
   }, [])
 
-  if (!mounted) return null
+  if (!mounted) {
+    return (
+      <div className="h-full flex items-center justify-center">
+        <div className="animate-pulse">Loading...</div>
+      </div>
+    )
+  }
 
   const isAuthPage = pathname?.includes('/login') || pathname?.includes('/activate')
 

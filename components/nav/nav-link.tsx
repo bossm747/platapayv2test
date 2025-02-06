@@ -9,7 +9,7 @@ interface NavLinkProps {
   onClick?: () => void
 }
 
-export function NavLink({ route, pathname, className }: NavLinkProps) {
+export function NavLink({ route, pathname, className, onClick }: NavLinkProps) {
   return (
     <Link
       href={route.href}
