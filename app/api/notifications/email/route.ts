@@ -19,6 +19,21 @@ export async function POST(request: Request) {
     }
 
     const body = await request.json()
+    
+    // Add template support
+    let emailContent = body.message
+    if (body.template) {
+      const templates = {
+        welcome: (username: string) => require('@/lib/email-templates/welcome').welcomeEmailTemplate(username),
+        otp: (username: string, otp: string) => require('@/lib/email-templates/otp').otpEmailTemplate(username, otp),
+        passwordUpdated: (username: string) => require('@/lib/email-templates/password-updated').passwordUpdatedTemplate(username)
+      }
+      
+      if (templates[body.template]) {
+        emailContent = templates[body.template](...body.templateData)
+        body.is_html = true
+      }
+    }
 
     const response = await fetch(
       `${BASE_URL}/notifications/email`,
