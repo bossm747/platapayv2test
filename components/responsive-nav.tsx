@@ -11,9 +11,9 @@ export function ResponsiveNav() {
   const filteredRoutes = routes.filter((route) => user && route.roles.includes(user.role))
 
   return (
-    <>
+    <div key={user?.id}>
       <MobileNav routes={filteredRoutes} onLogout={logout} />
       <DesktopNav routes={filteredRoutes} onLogout={logout} />
-    </>
+    </div>
   )
 }

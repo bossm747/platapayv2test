@@ -23,7 +23,7 @@ export default function RootLayout({
       <body className={`${inter.className} h-full`}>
         <AuthProvider>
           {/* Conditionally render nav and chat based on pathname */}
-          {typeof window !== 'undefined' && !window.location.pathname.includes('/login') ? (
+          {typeof window !== 'undefined' && !window.location.pathname.includes('/login') && !window.location.pathname.includes('/activate') ? (
             <>
               <div className="flex h-full">
                 <ResponsiveNav />

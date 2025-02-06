@@ -14,11 +14,12 @@ export function NavLink({ route, pathname, className }: NavLinkProps) {
       href={route.href}
       className={cn(
         className,
+        "transition-colors",
         pathname === route.href ? "text-primary" : "text-muted-foreground"
       )}
     >
       <route.icon className="w-5 h-5 mb-1" />
-      <span className="text-xs">{route.label}</span>
+      <span className="text-xs truncate">{route.label}</span>
     </Link>
   )
 }

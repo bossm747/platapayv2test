@@ -42,18 +42,13 @@ export function MobileNav({ routes, onLogout }: MobileNavProps) {
             <ScrollArea className="h-[calc(100vh-8rem)] pb-10">
               <div className="flex flex-col gap-4 py-4">
                 {routes.map((route) => (
-                  <Link
+                  <NavLink
                     key={route.href}
-                    href={route.href}
-                    className={cn(
-                      "flex items-center gap-3 rounded-lg px-3 py-2 text-base transition-colors hover:bg-muted",
-                      pathname === route.href ? "bg-muted" : "",
-                    )}
+                    route={route}
+                    pathname={pathname}
+                    className="flex items-center gap-3 rounded-lg px-3 py-2 text-base hover:bg-muted"
                     onClick={() => setOpen(false)}
-                  >
-                    <route.icon className="w-5 h-5" />
-                    {route.label}
-                  </Link>
+                  />
                 ))}
                 <Button
                   variant="ghost"
