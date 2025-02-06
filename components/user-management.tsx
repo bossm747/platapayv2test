@@ -52,10 +52,48 @@ export function UserManagement() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     try {
+      // Validate required fields
+      if (!formData.username || !formData.email) {
+        toast({
+          title: "Error",
+          description: "Username and email are required",
+          variant: "destructive",
+        })
+        return
+      }
+
+      if (!formData.user_detail.first_name || !formData.user_detail.last_name || 
+          !formData.user_detail.address || !formData.user_detail.mobile_number) {
+        toast({
+          title: "Error",
+          description: "All user details are required",
+          variant: "destructive",
+        })
+        return
+      }
+
+      if (userType === "agent") {
+        const requiredStoreFields = [
+          'name', 'tin_number', 'address_number', 'address_street',
+          'address_subdivision', 'address_brgy', 'address_municipality',
+          'address_city', 'address_region', 'longitude', 'latitude'
+        ]
+        
+        const missingFields = requiredStoreFields.filter(field => !formData.store_detail[field as keyof typeof formData.store_detail])
+        if (missingFields.length > 0) {
+          toast({
+            title: "Error",
+            description: `Missing required store fields: ${missingFields.join(', ')}`,
+            variant: "destructive",
+          })
+          return
+        }
+      }
       const response = await fetch("/api/users/create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "Authorization": `Bearer ${localStorage.getItem("auth_token")}`,
         },
         body: JSON.stringify({
           userType,
@@ -65,10 +103,12 @@ export function UserManagement() {
 
       if (!response.ok) {
         const errorData = await response.json()
-        throw new Error(errorData.error || "Failed to create user")
+        console.error("Create user error:", errorData)
+        throw new Error(errorData.error || `Failed to create user: ${response.status} ${response.statusText}`)
       }
 
       const data = await response.json()
+      console.log("Create user success:", data)
       toast({
         title: "Success",
         description: `User created successfully`,
@@ -85,6 +125,25 @@ export function UserManagement() {
           address: "",
           mobile_number: "",
           birth_date: ""
+        },
+        store_detail: {
+          name: "",
+          tin_number: "",
+          address_number: "",
+          address_street: "",
+          address_subdivision: "",
+          address_brgy: "",
+          address_municipality: "",
+          address_city: "",
+          address_region: "",
+          longitude: "",
+          latitude: ""
+        },
+        store_setting: {
+          max_cashiers: 0,
+          max_gen_trx_amount_per_day: 0,
+          max_cash_out_amount_per_day: 0,
+          max_e_load_amount_per_day: 0
         }
       })
       setUserType("")
