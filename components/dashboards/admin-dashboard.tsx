@@ -1,7 +1,11 @@
+"use client"
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import type { User } from "@/lib/auth-context"
-import { BarChart, Users, DollarSign } from "lucide-react"
+import { Users, Wallet, ArrowUpRight, ArrowDownRight } from "lucide-react"
 import { UserStats } from "@/components/user-stats"
+import { Overview } from "@/components/overview"
+import { RecentTransactions } from "@/components/recent-transactions"
 
 interface AdminDashboardProps {
   user: User
@@ -9,30 +13,19 @@ interface AdminDashboardProps {
 
 export function AdminDashboard({ user }: AdminDashboardProps) {
   return (
-    <div className="space-y-4">
-      <h1 className="text-2xl font-bold">Welcome, {user.username}</h1>
-      <p className="text-muted-foreground">Administrator Dashboard</p>
+    <div className="space-y-6">
+      <div>
+        <h1 className="text-2xl font-bold">Welcome, {user.username}</h1>
+        <p className="text-muted-foreground">Administrator Dashboard</p>
+      </div>
+
       <UserStats 
         totalUsers={1234}
         activeUsers={987}
         newUsers={180}
         inactiveUsers={67}
       />
-      {/* Add more admin-specific content here */}
-    </div>
-  )
-}
 
-"use client"
-
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Overview } from "@/components/overview"
-import { RecentTransactions } from "@/components/recent-transactions"
-import { Users, Wallet, ArrowUpRight, ArrowDownRight } from "lucide-react"
-
-export function AdminDashboard() {
-  return (
-    <div className="space-y-6">
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
