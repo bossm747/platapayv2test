@@ -177,13 +177,13 @@ export function UserManagement() {
   }
 
   return (
-    <div className="space-y-6">
-      <h1 className="text-2xl font-bold tracking-tight">User Management</h1>
+    <div className="space-y-6 bg-[#f5f0f9] p-6 min-h-screen">
+      <h1 className="text-2xl font-bold tracking-tight text-[#482164]">User Management</h1>
 
-      <Card>
-        <CardHeader>
+      <Card className="border-[#5a2c7f]">
+        <CardHeader className="bg-[#5a2c7f] text-white rounded-t-lg">
           <CardTitle>Create New User</CardTitle>
-          <CardDescription>Add a new user to the system</CardDescription>
+          <CardDescription className="text-[#dbcbe5]">Add a new user to the system</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -271,7 +271,7 @@ export function UserManagement() {
             {userType === "agent" && (
               <>
                 <div className="space-y-4">
-                  <h3 className="text-lg font-medium">Store Details</h3>
+                  <h3 className="text-lg font-medium text-[#482164] border-b-2 border-[#dbcbe5] pb-2">Store Details</h3>
                   <div className="space-y-2">
                     <Label htmlFor="store_name">Store Name</Label>
                     <Input
@@ -393,7 +393,7 @@ export function UserManagement() {
                 </div>
 
                 <div className="space-y-4">
-                  <h3 className="text-lg font-medium">Store Settings</h3>
+                  <h3 className="text-lg font-medium text-[#482164] border-b-2 border-[#dbcbe5] pb-2">Store Settings</h3>
                   <div className="space-y-2">
                     <Label htmlFor="max_cashiers">Maximum Cashiers</Label>
                     <Input
@@ -442,7 +442,7 @@ export function UserManagement() {
               </>
             )}
 
-            <Button type="submit" className="w-full">
+            <Button type="submit" className="w-full bg-[#5a2c7f] hover:bg-[#482164] text-white">
               Create User
             </Button>
           </form>
