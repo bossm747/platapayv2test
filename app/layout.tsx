@@ -22,13 +22,22 @@ export default function RootLayout({
     <html lang="en" className="h-full">
       <body className={`${inter.className} h-full`}>
         <AuthProvider>
-          <div className="flex h-full">
-            <ResponsiveNav />
-            <main className="flex-1 overflow-y-auto p-4 md:p-6 md:ml-64 pb-20 md:pb-6">
+          {/* Conditionally render nav and chat based on pathname */}
+          {typeof window !== 'undefined' && !window.location.pathname.includes('/login') ? (
+            <>
+              <div className="flex h-full">
+                <ResponsiveNav />
+                <main className="flex-1 overflow-y-auto p-4 md:p-6 md:ml-64 pb-20 md:pb-6">
+                  {children}
+                </main>
+              </div>
+              <ChatModal />
+            </>
+          ) : (
+            <main className="flex h-full items-center justify-center bg-gradient-to-b from-purple-50 to-white">
               {children}
             </main>
-          </div>
-          <ChatModal />
+          )}
           <div id="modal-root" />
         </AuthProvider>
       </body>
