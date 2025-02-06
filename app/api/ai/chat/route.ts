@@ -6,7 +6,7 @@ import { cookies } from "next/headers"
 const BASE_URL = "https://platapay-api-uat.azurewebsites.net/api"
 
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY
+  apiKey: "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"
 })
 
 const SYSTEM_PROMPT = `You are PlataPay's AI Assistant. You help users with PlataPay services and can perform actions like checking balances, creating users, and handling transactions.
