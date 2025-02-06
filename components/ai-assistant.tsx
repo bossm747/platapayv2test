@@ -12,7 +12,11 @@ interface Message {
   content: string
 }
 
-export function AIAssistant() {
+interface AIAssistantProps {
+  hideHeader?: boolean
+}
+
+export function AIAssistant({ hideHeader = false }: AIAssistantProps) {
   const [messages, setMessages] = React.useState<Message[]>([])
   const [input, setInput] = React.useState("")
   const [isLoading, setIsLoading] = React.useState(false)
@@ -66,14 +70,16 @@ export function AIAssistant() {
 
   return (
     <Card className="w-full max-w-2xl mx-auto shadow-lg border border-purple-100">
-      <CardHeader className="bg-gradient-to-r from-purple-900 to-purple-700 text-white rounded-t-lg">
-        <CardTitle className="flex items-center gap-2 text-lg">
-          <Bot size={24} className="animate-pulse" />
-          PlataPay Assistant
-        </CardTitle>
-      </CardHeader>
-      <CardContent className="p-2 sm:p-4">
-        <div className="h-[calc(90vh-12rem)] sm:h-[400px] overflow-y-auto mb-4 space-y-4 px-2">
+      {!hideHeader && (
+        <CardHeader className="bg-gradient-to-r from-purple-900 to-purple-700 text-white rounded-t-lg">
+          <CardTitle className="flex items-center gap-2 text-lg">
+            <Bot size={24} className="animate-pulse" />
+            PlataPay Assistant
+          </CardTitle>
+        </CardHeader>
+      )}
+      <CardContent className="p-2 sm:p-4 h-full">
+        <div className="h-[calc(100%-80px)] overflow-y-auto mb-4 space-y-4 px-2">
           {messages.map((message, index) => (
             <div
               key={index}
@@ -88,22 +94,24 @@ export function AIAssistant() {
           ))}
           <div ref={messagesEndRef} />
         </div>
-        <form onSubmit={handleSubmit} className="flex gap-2">
+        <form onSubmit={handleSubmit} className="flex items-center gap-2 bg-white p-2 rounded-lg shadow-sm">
           <Input
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Ask about PlataPay services..."
             disabled={isLoading}
+            className="flex-1 border-0 focus-visible:ring-1 focus-visible:ring-purple-500"
           />
           <Button 
             type="submit" 
-            className="bg-[#5a2c7f] hover:bg-[#482164]"
+            size="icon"
+            className="bg-[#5a2c7f] hover:bg-[#482164] rounded-full w-10 h-10 flex items-center justify-center"
             disabled={isLoading}
           >
             {isLoading ? (
               <span className="animate-spin">⚪</span>
             ) : (
-              <Send className="h-4 w-4" />
+              <Send className="h-5 w-5" />
             )}
           </Button>
         </form>

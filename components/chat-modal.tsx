@@ -27,18 +27,20 @@ export function ChatModal() {
 
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogContent 
-          className="sm:max-w-[500px] h-[90vh] sm:h-[600px] w-[95vw] sm:w-full overflow-hidden bg-gradient-to-b from-purple-50 to-white border border-purple-100 shadow-xl"
+          className="sm:max-w-[500px] h-[85vh] sm:h-[600px] w-[95vw] sm:w-full overflow-hidden bg-gradient-to-b from-purple-50 to-white border border-purple-100 shadow-xl"
           onInteractOutside={(e) => {
             if (isLoading) {
               e.preventDefault()
             }
           }}
         >
-          <DialogHeader>
-            <DialogTitle>PlataPay Assistant</DialogTitle>
-          </DialogHeader>
-          <div className="flex-1 overflow-hidden">
-            <AIAssistant />
+          <div className="flex flex-col h-full">
+            <DialogHeader className="pb-2">
+              <DialogTitle className="text-lg font-semibold text-purple-900">PlataPay Assistant</DialogTitle>
+            </DialogHeader>
+            <div className="flex-1 overflow-hidden">
+              <AIAssistant hideHeader />
+            </div>
           </div>
         </DialogContent>
       </Dialog>
