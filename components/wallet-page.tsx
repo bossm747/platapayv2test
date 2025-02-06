@@ -25,10 +25,12 @@ export function WalletPage() {
       })
 
       if (!response.ok) {
-        throw new Error("Failed to add funds")
+        const errorData = await response.json()
+        throw new Error(errorData.error || "Failed to add funds")
       }
 
       const data = await response.json()
+      console.log("Add funds response:", data)
       toast({
         title: "Funds Added",
         description: `₱${addAmount} has been added to your wallet.`,
@@ -55,10 +57,12 @@ export function WalletPage() {
       })
 
       if (!response.ok) {
-        throw new Error("Failed to transfer funds")
+        const errorData = await response.json()
+        throw new Error(errorData.error || "Failed to transfer funds")
       }
 
       const data = await response.json()
+      console.log("Transfer response:", data)
       toast({
         title: "Transfer Successful",
         description: `₱${transferAmount} has been sent to ${recipient}.`,
